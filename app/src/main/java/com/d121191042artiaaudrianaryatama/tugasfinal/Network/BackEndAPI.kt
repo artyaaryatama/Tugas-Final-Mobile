@@ -6,7 +6,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface BackEndApi {
-    @GET("https://masak-apa-tomorisakura.vercel.app/api/categorys/recipes/resep-daging")
+    @GET("api/categorys/recipes/resep-daging")
     fun getResepFromAPI() : Call<DaftarResep>
 
 }

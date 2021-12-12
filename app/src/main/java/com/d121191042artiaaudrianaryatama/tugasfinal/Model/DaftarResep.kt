@@ -7,10 +7,10 @@ data class DaftarResep(
 )
 
 data class result(
-    val dificulty: String,
-    val key: String,
-    val portion: String,
-    val thumb: String,
-    val times: String,
-    val title: String
+    val dificulty: String?,
+    val key: String?,
+    val portion: String?,
+    val thumb: String?,
+    val times: String?,
+    val title: String?
 )

@@ -9,7 +9,7 @@ import com.d121191042artiaaudrianaryatama.tugasfinal.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_resep.view.*
 
-class ResepAdapter(private val listResep : ArrayList<result>) : RecyclerView.Adapter<ResepAdapter.Holder>() {
+class ResepAdapter(private val listResep : List<result>) : RecyclerView.Adapter<ResepAdapter.Holder>() {
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bind(resep : result){
             with(itemView){
@@ -30,11 +30,12 @@ class ResepAdapter(private val listResep : ArrayList<result>) : RecyclerView.Ada
         return Holder(view)
     }
 
+    override fun onBindViewHolder(holder: Holder, position: Int) {
+        holder.bind(listResep.get(position))
+    }
+
     override fun getItemCount(): Int {
         return listResep.size
     }
 
-    override fun onBindViewHolder(holder: ResepAdapter.Holder, position: Int) {
-        holder.bind(listResep[position])
-    }
 }
