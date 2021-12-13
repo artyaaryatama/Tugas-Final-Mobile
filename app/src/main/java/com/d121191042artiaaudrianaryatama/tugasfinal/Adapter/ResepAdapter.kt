@@ -1,8 +1,10 @@
 package com.d121191042artiaaudrianaryatama.tugasfinal.Adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.d121191042artiaaudrianaryatama.tugasfinal.Model.result
 import com.d121191042artiaaudrianaryatama.tugasfinal.R
@@ -13,6 +15,7 @@ class ResepAdapter(private val listResep: List<result>, val listener: OnClickLis
 
     interface OnClickListener {
         fun onClick(key : String)
+        fun onShare(title: String)
     }
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
         fun bind(resep : result, listener: OnClickListener){
@@ -27,8 +30,9 @@ class ResepAdapter(private val listResep: List<result>, val listener: OnClickLis
 
                 itemView.setOnClickListener{
                     listener.onClick(resep.key!!)
-
-
+                }
+                shareBtn.setOnClickListener{
+                    listener.onShare(title.text.toString())
                 }
 
             }

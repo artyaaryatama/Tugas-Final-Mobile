@@ -11,6 +11,7 @@ import com.d121191042artiaaudrianaryatama.tugasfinal.Network.WebServiceClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.widget.Toast
 
 class ResepViewModel() :ViewModel(){
     init {
@@ -18,6 +19,7 @@ class ResepViewModel() :ViewModel(){
     }
     interface OnClickListener{
         fun onClick(key: String)
+        fun onShare(title: String)
     }
 
     var listResep : List<result>? = null
@@ -30,6 +32,10 @@ class ResepViewModel() :ViewModel(){
                 recyclerView.adapter = ResepAdapter(response.body()!!.results, object : ResepAdapter.OnClickListener {
                     override fun onClick(key: String) {
                         listener.onClick(key)
+                    }
+
+                    override fun onShare(title: String) {
+                        listener.onShare(title)
                     }
 
                 })

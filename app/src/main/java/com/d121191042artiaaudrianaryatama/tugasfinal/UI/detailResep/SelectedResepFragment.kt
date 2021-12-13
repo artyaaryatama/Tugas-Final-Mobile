@@ -9,10 +9,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.d121191042artiaaudrianaryatama.tugasfinal.Model.results
 import com.d121191042artiaaudrianaryatama.tugasfinal.R
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.item_resep.*
+import kotlinx.android.synthetic.main.detail_resep.*
+import kotlinx.android.synthetic.main.item_resep.imagethumb
+import kotlinx.android.synthetic.main.item_resep.title
 
 
-class SelectedResep(var key : String) : Fragment() {
+class SelectedResepFragment(var key : String) : Fragment() {
     lateinit var viewModel: SelectedResepViewModel
 
 
@@ -22,7 +24,7 @@ class SelectedResep(var key : String) : Fragment() {
     ): View? {
         viewModel = ViewModelProvider(this).get(SelectedResepViewModel::class.java)
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_resep, container, false)
+        return inflater.inflate(R.layout.detail_resep, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -46,12 +48,14 @@ class SelectedResep(var key : String) : Fragment() {
             .into(imagethumb)
 
         title.text = results.title
+        ingredient.text = "Bahan - bahan : ${results.ingredient}".replace("[","").replace("]","")
+        step.text = "Langkah-langkah : ${results.step}".replace("[","").replace("]","").replace(".", "")
     }
 
     companion object {
         var key = ""
 
         @JvmStatic
-        fun newInstance(key: String) = SelectedResep(key)
+        fun newInstance(key: String) = SelectedResepFragment(key)
     }
 }
