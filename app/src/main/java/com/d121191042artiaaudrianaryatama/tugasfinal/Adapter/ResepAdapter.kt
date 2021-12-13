@@ -9,9 +9,13 @@ import com.d121191042artiaaudrianaryatama.tugasfinal.R
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_resep.view.*
 
-class ResepAdapter(private val listResep : List<result>) : RecyclerView.Adapter<ResepAdapter.Holder>() {
+class ResepAdapter(private val listResep: List<result>, val listener: OnClickListener) : RecyclerView.Adapter<ResepAdapter.Holder>() {
+
+    interface OnClickListener {
+        fun onClick(key : String)
+    }
     class Holder(itemView: View) : RecyclerView.ViewHolder(itemView){
-        fun bind(resep : result){
+        fun bind(resep : result, listener: OnClickListener){
             with(itemView){
                 Picasso.get()
                     .load(resep.thumb)
@@ -21,21 +25,30 @@ class ResepAdapter(private val listResep : List<result>) : RecyclerView.Adapter<
                 times.text = resep.times
                 level.text = resep.dificulty
 
+                itemView.setOnClickListener{
+                    listener.onClick(resep.key!!)
+
+
+                }
+
             }
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ResepAdapter.Holder {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_resep, parent,false)
         return Holder(view)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(listResep.get(position))
+        holder.bind(listResep.get(position), listener)
     }
-
     override fun getItemCount(): Int {
         return listResep.size
     }
 
+    companion object {
+        var key = ""
+    }
 }

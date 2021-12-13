@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.d121191042artiaaudrianaryatama.tugasfinal.Adapter.ResepAdapter
 import com.d121191042artiaaudrianaryatama.tugasfinal.R
+import com.d121191042artiaaudrianaryatama.tugasfinal.UI.detailResep.SelectedResep
 import kotlinx.android.synthetic.main.fragment_list_resep.*
 
 
@@ -32,12 +33,31 @@ class ListResepFragment : Fragment() {
         Log.d(TAG, "onViewCreated")
         recyvw.setHasFixedSize(true)
         recyvw.layoutManager = LinearLayoutManager(context)
-        if (viewModel.ListResepRepository.listResep.isNullOrEmpty()) {
-            viewModel.ListResepRepository.getDataFromApi(recyvw)
-        } else {
-            recyvw.adapter = ResepAdapter(viewModel.ListResepRepository.listResep!!)
+        if (viewModel.listResep.isNullOrEmpty()){
+            viewModel.getDataFromApi(recyvw, object : ResepViewModel.OnClickListener{
+                override fun onClick(key: String) {
+                    moveToSelectedResep(key)
+                }
+
+            })
+        }
+        else {
+            recyvw.adapter = ResepAdapter(viewModel.listResep!!, object :ResepAdapter.OnClickListener {
+                override fun onClick(key: String) {
+                    moveToSelectedResep(key)
+                }
+
+            })
         }
 
+    }
+
+    fun moveToSelectedResep(key: String){
+        SelectedResep.key = key
+        activity?.supportFragmentManager
+            ?.beginTransaction()
+            ?.replace(R.id.container, SelectedResep.newInstance(key))
+            ?.commitNow()
     }
 
     override fun onDestroy() {
