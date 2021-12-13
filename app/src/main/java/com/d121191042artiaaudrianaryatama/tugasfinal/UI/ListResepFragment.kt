@@ -53,6 +53,7 @@ class ListResepFragment : Fragment() {
 
             })
         }
+
         else {
             recyvw.adapter = ResepAdapter(viewModel.listResep!!, object :ResepAdapter.OnClickListener {
                 override fun onClick(key: String) {

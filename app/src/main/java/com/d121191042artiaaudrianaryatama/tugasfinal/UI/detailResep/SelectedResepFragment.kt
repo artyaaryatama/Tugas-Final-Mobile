@@ -48,8 +48,8 @@ class SelectedResepFragment(var key : String) : Fragment() {
             .into(imagethumb)
 
         title.text = results.title
-        ingredient.text = "Bahan - bahan : ${results.ingredient}".replace("[","").replace("]","")
-        step.text = "Langkah-langkah : ${results.step}".replace("[","").replace("]","").replace(".", "")
+        ingredient.text = "Bahan - bahan : \n\n${results.ingredient}".replace("[","").replace("]","")
+        step.text = "Langkah-langkah : \n\n${results.step}".replace("[","").replace("]","")
     }
 
     companion object {
