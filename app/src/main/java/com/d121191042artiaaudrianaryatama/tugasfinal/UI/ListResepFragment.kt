@@ -44,7 +44,7 @@ class ListResepFragment : Fragment() {
                 override fun onShare(title: String) {
                     val sendIntent: Intent = Intent().apply {
                         action = Intent.ACTION_SEND
-                        putExtra(Intent.EXTRA_TEXT, "Dapatkan $title dengan mudah untuk kamu yang suka masak! kamu bisa buka resepnya dengan mendownload aplikasi ini!")
+                        putExtra(Intent.EXTRA_TEXT, "Dapatkan $title untuk kamu yang suka masak! Kamu bisa buka resep ini dengan mendownload aplikasi yang ada pada link dibawah ini! https://drive.google.com/file/d/1h2xxXdoyDkvQyUAG3md7il8GUey14E4L/view?usp=sharing")
                         type = "text/plain"
                     }
                     val shareIntent = Intent.createChooser(sendIntent,null)
