@@ -77,10 +77,6 @@ class ListResepFragment : Fragment() {
             ?.commitNow()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d(TAG, "onDestroy")
-    }
 
     companion object {
         fun newInstance() = ListResepFragment()
