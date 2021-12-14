@@ -18,10 +18,7 @@ class SelectedResepFragment(var key : String) : Fragment() {
     lateinit var viewModel: SelectedResepViewModel
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView( inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = ViewModelProvider(this).get(SelectedResepViewModel::class.java)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.detail_resep, container, false)
@@ -48,8 +45,8 @@ class SelectedResepFragment(var key : String) : Fragment() {
             .into(imagethumb)
 
         title.text = results.title
-        ingredient.text = "Bahan - bahan : \n\n${results.ingredient}".replace("[","").replace("]","")
-        step.text = "Langkah-langkah : \n\n${results.step}".replace("[","").replace("]","")
+        ingredient.text = "Bahan yang harus kamu siapkan : \n\n${results.ingredient}".replace("[","").replace("]","")
+        step.text = "Tahap Memasak : \n\n${results.step}".replace("[","").replace("]","")
     }
 
     companion object {
