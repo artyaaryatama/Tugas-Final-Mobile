@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/navigation">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/listResepFragment">
 
+    <fragment
+        android:id="@+id/listResepFragment"
+        android:name="com.d121191042artiaaudrianaryatama.tugasfinal.UI.ListResepFragment"
+        android:label="fragment_list_resep"
+        tools:layout="@layout/fragment_list_resep" />
+    <fragment
+        android:id="@+id/selectedResepFragment"
+        android:name="com.d121191042artiaaudrianaryatama.tugasfinal.UI.detailResep.SelectedResepFragment"
+        android:label="detail_resep"
+        tools:layout="@layout/detail_resep" >
+        <action
+            android:id="@+id/action_selectedResepFragment_to_listResepFragment"
+            app:destination="@id/listResepFragment"
+            app:popUpTo="@id/listResepFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
 </navigation>
